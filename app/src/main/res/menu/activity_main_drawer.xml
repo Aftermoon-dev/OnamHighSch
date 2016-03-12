@@ -30,6 +30,11 @@
                 android:id="@+id/nav_schoolinfo"
                 android:icon="@drawable/ic_school_black_24dp"
                 android:title="학교 소개" />
+
+            <item
+                android:id="@+id/nav_map"
+                android:icon="@drawable/ic_map_black_24dp"
+                android:title="지도앱에서 보기" />
         </menu>
     </item>
 

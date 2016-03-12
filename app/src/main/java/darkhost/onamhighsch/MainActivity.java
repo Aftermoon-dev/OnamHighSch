@@ -130,6 +130,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fl_activity_main, SchoolinfoFrag).commit();
+        } else if (id == R.id.nav_map) {
+            Uri uri = Uri.parse("geo:37.6979318,127.2063148");
+            Intent it = new Intent(Intent.ACTION_VIEW,uri);
+            startActivity(it);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -193,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab1 = (FloatingActionButton)findViewById(R.id.fab1);
         fab2 = (FloatingActionButton)findViewById(R.id.fab2);
         fab3 = (FloatingActionButton)findViewById(R.id.fab3);
-
+        
         fab1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:031-570-3300"));
