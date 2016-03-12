@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#42A5F5</color>
+    <color name="colorAccent">#00BCD4</color>
+
+    <color name="fab1">#9DE0AD</color>
+    <color name="fab2">#45ADA8</color>
+    <color name="fab3">#547980</color>
+
+    <color name="main_lunch">#556270</color>
+    <color name="main_dinner">#4ECDC4</color>
+    <color name="main_sch">#FF6B6B</color>
+    <color name="main_timetable">#C44D58</color>
+
+    <color name="mon">#00A0B0</color>
+    <color name="tue">#6A4A3C</color>
+    <color name="wed">#CC333F</color>
+    <color name="thu">#EB6841</color>
+    <color name="fri">#EDC951</color>
+</resources>

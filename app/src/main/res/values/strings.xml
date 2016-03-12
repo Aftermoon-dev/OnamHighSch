@@ -1,0 +1,74 @@
+<resources>
+    <string name="app_name">오남고등학교</string>
+    <string name="address">경기도 남양주시 오남읍 진건오남로 784-27</string>
+
+    <string name="infoname">오남고등학교 Application</string>
+    <string name="info">Made By 10724 선민재\n문의 : ddol0225@naver.com</string>
+
+    <string name="Al">* 알레르기 정보\n①난류 ②우유 ③메밀 ④땅콩 ⑤대두 ⑥밀 ⑦고등어 ⑧게 ⑨새우 ⑩돼지고기 ⑪복숭아 ⑫토마토 ⑬아황산염\n\n* 해당 급식은 언제든지 변동될 수 있습니다.</string>
+
+    <string name="timetable">시간표</string>
+    <string name="wait">로딩중..</string>
+    <string name="failed">로딩 실패</string>
+    <string name="nomeal">급식 로딩 실패</string>
+    <string name="nosch">일정 로딩 실패</string>
+    <string name="save">저장하기</string>
+    <string name="reset">데이터 재설정</string>
+
+    <string name="download_start">새로운 급식과 학사정보 데이터를 다운로드하고 있습니다. 인터넷을 끊지 마시기 바랍니다.</string>
+    <string name="re_download_start">급식과 학사정보 데이터를 다시 다운로드하고 있습니다. 인터넷을 끊지 마시기 바랍니다.</string>
+    <string name="internet_error">인터넷에 연결되지 않아 정보를 가져올 수 없습니다. 인터넷에 연결해주세요.</string>
+    <string name="data_reset">데이터 재설정중입니다. 인터넷을 끊지 마시기 바랍니다.</string>
+    <string name="savecomplete">저장했습니다.</string>
+    <string name="comingsoon">준비중입니다.</string>
+
+    <string name="montime">월요일 시간표</string>
+    <string name="tuetime">화요일 시간표</string>
+    <string name="wedtime">수요일 시간표</string>
+    <string name="thutime">목요일 시간표</string>
+    <string name="fritime">금요일 시간표</string>
+    <string name="notime">시간표 설정 안됨</string>
+
+    <string name="todaylunch">오늘의 점심</string>
+    <string name="todaydinner">오늘의 저녁</string>
+    <string name="todaysch">오늘의 일정</string>
+    <string name="lunch">점심</string>
+    <string name="dinner">저녁</string>
+
+    <string name="navigation_drawer_open">메뉴 열기</string>
+    <string name="navigation_drawer_close">메뉴 닫기</string>
+
+    <string name="monday">월요일</string>
+    <string name="tuesday">화요일</string>
+    <string name="wednesday">수요일</string>
+    <string name="thursday">목요일</string>
+    <string name="friday">금요일</string>
+    <string name="Weekend">주말</string>
+
+    <string name="schoollesson">교훈</string>
+    <string name="schoollesson_dec">행복한 삶을 위하여\n· 시작은 겸손하게\n· 과정은 성실하게\n· 매듭은 감사하게</string>
+
+    <string name="logo">교표</string>
+    <string name="logo_dec1">"교화인 초롱꽃 형상에 글자 '오남고'와 펜촉을 형상화\n높은 이상을 품고 면학에 정진하는 표현"</string>
+
+    <string name="tree">교목 - 소나무</string>
+    <string name="tree_dec1">굳셈, 장수, 성실, 지조</string>
+
+    <string name="flower">교화 - 초롱꽃</string>
+    <string name="flower_dec1">감사, 은혜, 충실, 정의\n열성에 감복</string>
+
+    <string name="color">교색 - 청색</string>
+    <string name="color_dec1">상징적 의미 : 진리, 헌신, 평온, 평화, 성실, 믿음, \n생명의 기쁨, 봄, 희망, 책임, 발전의 색\n일반적으로 자제외 적응을 상징한다.\n\n메시지 : 믿음직한 인물이나 의사 결정자가 되고 싶다는 뜻</string>
+
+    <string name="animal">상징동물 - 호랑이</string>
+    <string name="animal_dec1">효, 보은, 정열, 독립, 모험, 용기, 결단, 민활, \n지도자적 자격, 위엄, 관대함, 의리, 신념, 힘, 혁신, 일관성을 상징함.</string>
+
+    <string name="toffice1">교무실</string>
+    <string name="toffice1_num">031-570-3300</string>
+
+    <string name="toffice2">학생부</string>
+    <string name="toffice2_num">031-570-3360</string>
+
+    <string name="toffice3">행정실</string>
+    <string name="toffice3_num">031-570-3308</string>
+</resources>
