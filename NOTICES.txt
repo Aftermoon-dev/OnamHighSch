@@ -122,7 +122,19 @@ https://github.com/agemor/school-api
 	
 ====================
 
+Photo Orignal URL 
 
+Tree : https://pixabay.com/ko/%EC%86%8C%EB%82%98%EB%AC%B4-%ED%8A%B8%EB%A6%AC-%EC%88%B2-%EC%A7%80%EC%A0%90-%EC%BD%98-523609/
+
+Flower : https://commons.wikimedia.org/wiki/File:Campanula_with_waterdrops.jpg?uselang=ko
+
+Animal : https://pixabay.com/ko/%ED%98%B8%EB%9E%91%EC%9D%B4-%EC%88%98%EB%A7%88%ED%8A%B8%EB%9D%BC-%EC%88%98%EB%A7%88%ED%8A%B8%EB%9D%BC-%ED%98%B8%EB%9E%91%EC%9D%B4-%ED%98%B8%EB%9E%91%EC%9D%B4-%EC%83%88%EB%81%BC-%EC%83%88%EB%81%BC-%EC%A0%8A%EC%9D%80-164905/
+
+School Logo : http://arch.goeia.go.kr/archmain/?menugrp=cafe&master=home&act=index&cafe_sid=658
+
+School Background : http://onam.hs.kr/board.read?mcode=1027&id=1
+
+Navigation Menu Icon (Bookmark, Build, Call, Clear, Event Note, Map, Restaurant Menu, School) " https://design.google.com/icons/index.html
 
 
 

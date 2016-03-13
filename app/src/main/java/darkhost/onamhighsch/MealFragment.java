@@ -27,6 +27,7 @@ public class MealFragment extends Fragment {
     ViewPager pager;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
+    int pages;
     CharSequence Titles[]={ "점심", "저녁" };
     int Numboftabs = 2;
 
@@ -34,8 +35,9 @@ public class MealFragment extends Fragment {
 
     }
 
-    public static MealFragment newInstance() {
+    public static MealFragment newInstance(int page) {
         MealFragment fragment = new MealFragment();
+        fragment.pages = page; // 0부터 시작
         return fragment;
     }
 
@@ -64,6 +66,9 @@ public class MealFragment extends Fragment {
         tabs.setViewPager(pager);
 
         pager.setOffscreenPageLimit(2);
+
+        // 지정된 페이지로 설정
+        pager.setCurrentItem(pages);
         return view;
     }
 }

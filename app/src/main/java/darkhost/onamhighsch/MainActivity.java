@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         MainFrag = MainFragment.newInstance();
-        MealFrag = MealFragment.newInstance();
+        MealFrag = MealFragment.newInstance(0);
         SchFrag = SchFragment.newInstance();
         TimeTableFrag = TimeTableFragment.newInstance();
         SettingFrag = SettingFragment.newInstance();

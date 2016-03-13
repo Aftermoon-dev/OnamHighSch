@@ -44,40 +44,40 @@ public class MainFragment extends Fragment {
         CardView Lunch = (CardView) view.findViewById(R.id.lunchcard);
         Lunch.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Fragment MealFragment = new MealFragment();
+                Fragment MealFrag = MealFragment.newInstance(0);
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fl_activity_main, MealFragment).commit();
+                        .replace(R.id.fl_activity_main, MealFrag).commit();
             }
         });
 
         CardView Dinner = (CardView) view.findViewById(R.id.dinnercard);
         Dinner.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Fragment MealFragment = new MealFragment();
+                Fragment MealFrag = MealFragment.newInstance(1);
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fl_activity_main, MealFragment).commit();
+                        .replace(R.id.fl_activity_main, MealFrag).commit();
             }
         });
 
         CardView Sch = (CardView) view.findViewById(R.id.schcard);
         Sch.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Fragment SchFragment = new SchFragment();
+                Fragment SchFrag = SchFragment.newInstance();
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fl_activity_main, SchFragment).commit();
+                        .replace(R.id.fl_activity_main, SchFrag).commit();
             }
         });
 
         CardView TimeTables = (CardView) view.findViewById(R.id.timetablecard);
         TimeTables.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Fragment TimeTableFragment = new TimeTableFragment();
+                Fragment TimeTableFrag = TimeTableFragment.newInstance();
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fl_activity_main, TimeTableFragment).commit();
+                        .replace(R.id.fl_activity_main, TimeTableFrag).commit();
             }
         });
 
