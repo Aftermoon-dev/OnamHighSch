@@ -25,7 +25,8 @@
     <FrameLayout
         android:id="@+id/fl_activity_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:layout_width="wrap_content"

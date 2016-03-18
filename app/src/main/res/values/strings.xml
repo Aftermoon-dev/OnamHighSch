@@ -15,6 +15,7 @@
     <string name="save">저장하기</string>
     <string name="reset">데이터 재설정</string>
 
+    <string name="nointernet">인터넷에 연결할 수 없습니다.</string>
     <string name="download_start">새로운 급식과 학사정보 데이터를 다운로드하고 있습니다. 인터넷을 끊지 마시기 바랍니다.</string>
     <string name="re_download_start">급식과 학사정보 데이터를 다시 다운로드하고 있습니다. 인터넷을 끊지 마시기 바랍니다.</string>
     <string name="internet_error">인터넷에 연결되지 않아 정보를 가져올 수 없습니다. 인터넷에 연결해주세요.</string>
