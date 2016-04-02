@@ -55,6 +55,10 @@ public class DinnerFrag extends Fragment {
         SharedPreferences data2 = DinnerFrag.this.getActivity().getSharedPreferences("month", Context.MODE_MULTI_PROCESS);
         int months = data2.getInt("month", 0);
 
+        // 이전 달 급식 메뉴 SP 로드
+        SharedPreferences data3 = DinnerFrag.this.getActivity().getSharedPreferences("mealbm", Context.MODE_MULTI_PROCESS);
+        String mealdb2 = data3.getString("mealbm", "");
+
         // 텍스트뷰 찾기
         TextView monday = (TextView) view.findViewById(R.id.monday);
         TextView tuesday = (TextView) view.findViewById(R.id.tuesday);
@@ -67,6 +71,7 @@ public class DinnerFrag extends Fragment {
 
             MenuData[] meals = new MenuData[31];
             MenuData[] nmmeals = new MenuData[31];
+            MenuData[] bmmeals = new MenuData[31];
             try {
                 // 현재 달의 급식 데이터 파싱
                 Document meal = Jsoup.parse(mealdb);
@@ -75,6 +80,10 @@ public class DinnerFrag extends Fragment {
                 // 다음 달의 급식 데이터 파싱
                 Document mealnm = Jsoup.parse(mealdb1);
                 nmmeals = MenuDataParser.parse(mealnm);
+
+                // 다음 달의 급식 데이터 파싱
+                Document mealbm = Jsoup.parse(mealdb2);
+                bmmeals = MenuDataParser.parse(mealbm);
             } catch (Exception e) {
                 Log.d("DinnerFrag", "Parsing Error!");
             }
@@ -91,10 +100,15 @@ public class DinnerFrag extends Fragment {
                     // 이번달 급식 파싱
                     monday.setText(meals[Mondayd - 1].dinner);
                 }
-                else // 아니라면
+                else if(Mondaym > months)
                 {
                     // 다음달 급식 파싱
                     monday.setText(nmmeals[Mondayd - 1].dinner);
+                }
+                else
+                {
+                    // 이전달 급식 파싱
+                    monday.setText(bmmeals[Mondayd - 1].dinner);
                 }
 
             } catch (Exception e) {
@@ -111,10 +125,17 @@ public class DinnerFrag extends Fragment {
                 {
                     tuesday.setText(meals[Tuesdayd - 1].dinner);
                 }
-                else
+                else if(Tuesdaym > months)
                 {
+                    // 다음달 급식 파싱
                     tuesday.setText(nmmeals[Tuesdayd - 1].dinner);
                 }
+                else
+                {
+                    // 이전달 급식 파싱
+                    tuesday.setText(bmmeals[Tuesdayd - 1].dinner);
+                }
+
 
             } catch (Exception e) {
                 tuesday.setText(NoMeal);
@@ -129,9 +150,15 @@ public class DinnerFrag extends Fragment {
                 {
                     wednesday.setText(meals[Wednesdayd - 1].dinner);
                 }
+                else if(Wednesdaym > months)
+                {
+                    // 다음달 급식 파싱
+                    wednesday.setText(nmmeals[Wednesdayd - 1].dinner);
+                }
                 else
                 {
-                    wednesday.setText(nmmeals[Wednesdayd - 1].dinner);
+                    // 이전달 급식 파싱
+                    wednesday.setText(bmmeals[Wednesdayd - 1].dinner);
                 }
 
             } catch (Exception e) {
@@ -146,9 +173,15 @@ public class DinnerFrag extends Fragment {
                 {
                     thursday.setText(meals[Thursdayd - 1].dinner);
                 }
+                else if(Thursdaym > months)
+                {
+                    // 다음달 급식 파싱
+                    thursday.setText(nmmeals[Thursdayd - 1].dinner);
+                }
                 else
                 {
-                    thursday.setText(nmmeals[Thursdayd - 1].dinner);
+                    // 이전달 급식 파싱
+                    thursday.setText(bmmeals[Thursdayd - 1].dinner);
                 }
 
             } catch (Exception e) {
@@ -163,9 +196,15 @@ public class DinnerFrag extends Fragment {
                 {
                     friday.setText(meals[Fridayd - 1].dinner);
                 }
+                else if(Fridaym > months)
+                {
+                    // 다음달 급식 파싱
+                    friday.setText(nmmeals[Fridayd - 1].dinner);
+                }
                 else
                 {
-                    friday.setText(nmmeals[Fridayd - 1].dinner);
+                    // 이전달 급식 파싱
+                    friday.setText(bmmeals[Fridayd - 1].dinner);
                 }
 
             } catch (Exception e) {

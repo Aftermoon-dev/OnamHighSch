@@ -178,8 +178,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         SharedPreferences snmdata = getSharedPreferences("schnm", Context.MODE_MULTI_PROCESS);
         String schnmdata = snmdata.getString("schnm", "");
 
+        SharedPreferences bmdata = getSharedPreferences("mealbm", Context.MODE_MULTI_PROCESS);
+        String mealbmdata = bmdata.getString("mealbm", "");
+
         // 데이터를 다운받은 달이 다른지, 급식 및 학사일정의 데이터가 비어있는지 확인하고 다운로드
-        if(dmonth != month | mealdata.equals("") | mealnmdata.equals("") | schdata.equals("") | schnmdata.equals("")) {
+        if(dmonth != month | mealdata.equals("") | mealnmdata.equals("") | schdata.equals("") | schnmdata.equals("") | mealbmdata.equals("")) {
             Log.d("MainActivity", "Data Downloading...");
             if (isNetworkAvailable() == true) {
 
@@ -232,21 +235,34 @@ class DataThread extends Thread
     public void run() {
         Log.d("Thread", "Thread Start!");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+
         Calendar cal = Calendar.getInstance();
         String nowdate = sdf.format(cal.getTime());
         int nowyear = Integer.parseInt(nowdate.substring(0, 4));
         int nowmonth = Integer.parseInt(nowdate.substring(4, 6));
-        cal.add(cal.MONTH,+1);
-        String nextdate = sdf.format(cal.getTime());
+
+        Calendar NextCal = Calendar.getInstance();
+        NextCal.add(cal.MONTH, +1);
+        String nextdate = sdf.format(NextCal.getTime());
         int nextyear = Integer.parseInt(nextdate.substring(0, 4));
         String Snextmonth = nextdate.substring(4, 6);
+
+        Calendar BeforeCal = Calendar.getInstance();
+        BeforeCal.add(cal.MONTH, -1);
+        String beforedate = sdf.format(BeforeCal.getTime());
+        int beforeyear = Integer.parseInt(beforedate.substring(0, 4));
+        String SBeforemonth = beforedate.substring(4, 6);
 
         try {
 
             Document sch = Jsoup.connect("http://hes.goe.go.kr/sts_sci_sf01_001.do?schulCode=J100005670&schulCrseScCode=4&schulKndScCode=04").get();
             Document schnm = Jsoup.connect("http://hes.goe.go.kr/sts_sci_sf01_001.do?schulCode=J100005670&schulCrseScCode=4&schulKndScCode=04&ay=" + nextyear + "&mm=" + Snextmonth).get();
+
             Document meal = Jsoup.connect("http://hes.goe.go.kr/sts_sci_md00_001.do?schulCode=J100005670&schulCrseScCode=4&schulKndScCode=04").get();
             Document mealnm = Jsoup.connect("http://hes.goe.go.kr/sts_sci_md00_001.do?schulCode=J100005670&schulCrseScCode=4&schulKndScCode=04&ay=" + nextyear + "&mm=" + Snextmonth).get();
+            Document mealbm = Jsoup.connect("http://hes.goe.go.kr/sts_sci_md00_001.do?schulCode=J100005670&schulCrseScCode=4&schulKndScCode=04&ay=" + beforeyear + "&mm=" + SBeforemonth).get();
+
+            Log.d("Thread", "BEFORE YEAR : " + beforeyear + "BEFORE MONTH : " + SBeforemonth);
             Log.d("Thread", "THIS YEAR : " + nowyear + "THIS MONTH : " + nowmonth);
             Log.d("Thread", "NEXT YEAR : " + nextyear + "NEXT MONTH : " + Snextmonth);
 
@@ -254,6 +270,7 @@ class DataThread extends Thread
             String schnms = schnm.toString();
             String meals = meal.toString();
             String mealnms = mealnm.toString();
+            String mealbms = mealbm.toString();
 
             SharedPreferences schp = Contexts.getSharedPreferences("sch", Context.MODE_MULTI_PROCESS);
             SharedPreferences.Editor scheditor = schp.edit();
@@ -274,6 +291,11 @@ class DataThread extends Thread
             SharedPreferences.Editor mealnmeditor = mealnmp.edit();
             mealnmeditor.putString("mealnm", mealnms);
             mealnmeditor.commit();
+
+            SharedPreferences mealbmp = Contexts.getSharedPreferences("mealbm", Context.MODE_MULTI_PROCESS);
+            SharedPreferences.Editor mealbmeditor = mealbmp.edit();
+            mealbmeditor.putString("mealbm", mealbms);
+            mealbmeditor.commit();
 
             SharedPreferences pref = Contexts.getSharedPreferences("month", Context.MODE_MULTI_PROCESS);
             SharedPreferences.Editor editor = pref.edit();
