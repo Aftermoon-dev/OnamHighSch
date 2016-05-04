@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import java.util.ArrayList;
@@ -60,25 +62,38 @@ public class SchFragment extends Fragment {
                 Log.d("SchFragment", "Parsing Error!");
             }
 
-            RecyclerView recyclerView=(RecyclerView)view.findViewById(R.id.recyclerview);
+            RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
             LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setNestedScrollingEnabled(true);
 
-            List<SchItem> items = new ArrayList<>();
-            SchItem[] item = new SchItem[lastDay];
+            Log.d("SchFragment", "This Month LastDay = " + lastDay);
 
-            for(int i=0; i<=lastDay; i++) {
-                if(schs[i] != null) {
-                    item[i] = new SchItem(i+1, schs[i].schedule);
+            try {
+                List<SchItem> items = new ArrayList<>();
+                SchItem[] item = new SchItem[lastDay];
+
+                for (int i = 0; i < lastDay; i++) {
+                    if (schs[i] != null) {
+                        item[i] = new SchItem(i+1, schs[i].schedule);
+                    }
+
+                    items.add(item[i]);
                 }
+
+                SchAdapter Adapter = new SchAdapter(getActivity(), items, R.layout.fragment_sch);
+                recyclerView.setAdapter(Adapter);
             }
-
-            for(int i = 0; i<lastDay; i++) { items.add(item[i]); }
-
-            SchAdapter Adapter = new SchAdapter(getActivity(), items, R.layout.fragment_sch);
-            recyclerView.setAdapter(Adapter);
+            catch (ArrayIndexOutOfBoundsException e)
+            {
+                Fragment MainFrag = MainFragment.newInstance();
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fl_activity_main, MainFrag).commit();
+                Toast.makeText(getActivity(), "일정을 가져오는데 오류가 발생했습니다.", Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            }
         }
     }
 }
