@@ -64,7 +64,7 @@ public class MainFragment extends Fragment {
         CardView Sch = (CardView) view.findViewById(R.id.schcard);
         Sch.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Fragment SchFrag = SchFragment.newInstance();
+                Fragment SchFrag = SchFragment.newInstance(0);
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fl_activity_main, SchFrag).commit();

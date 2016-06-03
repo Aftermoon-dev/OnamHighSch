@@ -30,7 +30,7 @@ public class DinnerFrag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dinnerfrag, container, false);
+        View view = inflater.inflate(R.layout.mealfrag, container, false);
         MealLoad(view);
         return view;
     }

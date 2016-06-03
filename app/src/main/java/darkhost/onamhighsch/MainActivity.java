@@ -1,6 +1,5 @@
 package darkhost.onamhighsch;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +11,7 @@ import android.os.Handler;
 import android.os.Message;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         MainFrag = MainFragment.newInstance();
         MealFrag = MealFragment.newInstance(0);
-        SchFrag = SchFragment.newInstance();
+        SchFrag = SchFragment.newInstance(0);
         TimeTableFrag = TimeTableFragment.newInstance();
         SettingFrag = SettingFragment.newInstance();
         SchoolinfoFrag = SchoolinfoFragment.newInstance();
@@ -200,27 +200,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab1 = (FloatingActionButton)findViewById(R.id.fab1);
         fab2 = (FloatingActionButton)findViewById(R.id.fab2);
         fab3 = (FloatingActionButton)findViewById(R.id.fab3);
-        
-        fab1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:031-570-3300"));
-                startActivity(intent);
-            }
-        });
 
-        fab2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:031-570-3360"));
-                startActivity(intent);
-            }
-        });
+        try {
+            fab1.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:031-570-3300"));
+                    startActivity(intent);
+                }
+            });
 
-        fab3.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:031-570-3308"));
-                startActivity(intent);
-            }
-        });
+            fab2.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:031-570-3360"));
+                    startActivity(intent);
+                }
+            });
+
+            fab3.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:031-570-3308"));
+                    startActivity(intent);
+                }
+            });
+        }
+        catch (Exception e) {
+                Toast.makeText(MainActivity.this, getString(R.string.dial_error), Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+        }
     }
 }
 
@@ -233,7 +239,7 @@ class DataThread extends Thread
     }
 
     public void run() {
-        Log.d("Thread", "Thread Start!");
+        Log.d("DataThread", "Thread Start!");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
 
         Calendar cal = Calendar.getInstance();
@@ -262,9 +268,9 @@ class DataThread extends Thread
             Document mealnm = Jsoup.connect("http://hes.goe.go.kr/sts_sci_md00_001.do?schulCode=J100005670&schulCrseScCode=4&schulKndScCode=04&ay=" + nextyear + "&mm=" + Snextmonth).get();
             Document mealbm = Jsoup.connect("http://hes.goe.go.kr/sts_sci_md00_001.do?schulCode=J100005670&schulCrseScCode=4&schulKndScCode=04&ay=" + beforeyear + "&mm=" + SBeforemonth).get();
 
-            Log.d("Thread", "BEFORE YEAR : " + beforeyear + "BEFORE MONTH : " + SBeforemonth);
-            Log.d("Thread", "THIS YEAR : " + nowyear + "THIS MONTH : " + nowmonth);
-            Log.d("Thread", "NEXT YEAR : " + nextyear + "NEXT MONTH : " + Snextmonth);
+            Log.d("DataThread", "BEFORE YEAR : " + beforeyear + "BEFORE MONTH : " + SBeforemonth);
+            Log.d("DataThread", "THIS YEAR : " + nowyear + "THIS MONTH : " + nowmonth);
+            Log.d("DataThread", "NEXT YEAR : " + nextyear + "NEXT MONTH : " + Snextmonth);
 
             String schs = sch.toString();
             String schnms = schnm.toString();
@@ -306,18 +312,18 @@ class DataThread extends Thread
 
 
         } catch (Exception e) {
-            Log.d("Thread", "Thread Exception Error!");
+            Log.d("DataThread", "Thread Exception Error!");
             e.printStackTrace();
         }
     }
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            Toast.makeText(Contexts, "다운로드가 완료되었습니다. 자동으로 재시작됩니다.", Toast.LENGTH_LONG).show();
-            ((Activity)Contexts).finish();
-            Intent intent = new Intent(Contexts, MainActivity.class);
-            Contexts.startActivity(intent);
+            Toast.makeText(Contexts, "다운로드가 완료되었습니다.", Toast.LENGTH_LONG).show();
+            Fragment MainFrag = MainFragment.newInstance();
+            ((FragmentActivity)Contexts).getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fl_activity_main, MainFrag).commit();
         }
     };
 }
-
