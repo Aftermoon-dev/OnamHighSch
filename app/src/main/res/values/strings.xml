@@ -22,6 +22,9 @@
     <string name="data_reset">데이터 재설정중입니다. 인터넷을 끊지 마시기 바랍니다.</string>
     <string name="savecomplete">저장했습니다.</string>
     <string name="comingsoon">준비중입니다.</string>
+    <string name="intenetwarning">모바일 네트워크 환경에서 다운로드시 데이터 요금이 부과될 수 있습니다.\n계속하시겠습니까?</string>
+    <string name="intenetwarning1">새 데이터를 다운로드하지 않으시면 정상적으로 이용하실 수 없습니다.</string>
+    <string name="cancel">취소되었습니다.</string>
 
     <string name="montime">월요일 시간표</string>
     <string name="tuetime">화요일 시간표</string>

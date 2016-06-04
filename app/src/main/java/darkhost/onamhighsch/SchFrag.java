@@ -20,18 +20,21 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
- * Created by 민재 on 2016-06-03.
+ * Created by 민재 on 2016-06-04.
  */
-public class TSchFrag extends Fragment {
+public class SchFrag extends Fragment {
     public static Context mContext;
+    String Code;
 
-    public TSchFrag() {
+    public SchFrag() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.schfrag, container, false);
+        // Arguments에서 code를 가져와 어떤 달의 일정을 원하는지 확인
+        Code = getArguments().getString("code");
         SchLoad(view);
         return view;
     }
@@ -42,8 +45,14 @@ public class TSchFrag extends Fragment {
 
         String schdb = new String();
 
-        SharedPreferences data = TSchFrag.this.getActivity().getSharedPreferences("sch", Context.MODE_MULTI_PROCESS);
-        schdb = data.getString("sch", "");
+        if(Code.equals("ThisMonth")) {
+            SharedPreferences data = SchFrag.this.getActivity().getSharedPreferences("sch", Context.MODE_MULTI_PROCESS);
+            schdb = data.getString("sch", "");
+        }
+        else if(Code.equals("NextMonth")) {
+            SharedPreferences data = SchFrag.this.getActivity().getSharedPreferences("schnm", Context.MODE_MULTI_PROCESS);
+            schdb = data.getString("schnm", "");
+        }
 
         if (!schdb.equals("")) {
             Calendar cal = Calendar.getInstance();
@@ -55,7 +64,7 @@ public class TSchFrag extends Fragment {
                 schs = ScheduleDataParser.parse(sch);
 
             } catch (Exception e) {
-                Log.d("TSchFrag", "Parsing Error!");
+                Log.d("SchFrag", "Parsing Error!");
             }
 
             RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
@@ -63,8 +72,6 @@ public class TSchFrag extends Fragment {
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setNestedScrollingEnabled(true);
-
-            Log.d("TSchFrag", "This Month LastDay = " + lastDay);
 
             try {
                 List<SchItem> items = new ArrayList<>();

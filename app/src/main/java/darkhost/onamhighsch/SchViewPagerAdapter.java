@@ -1,5 +1,6 @@
 package darkhost.onamhighsch;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -22,16 +23,21 @@ public class SchViewPagerAdapter extends FragmentPagerAdapter {
     //This method return the fragment for the every position in the View Pager
     @Override
     public Fragment getItem(int position) {
+        // 소스 최적화를 위해 하나의 프레그먼트로 일정 정보를 보여줄 수 있도록
+        // Bundle로 Argument를 보내 가져올 정보를 정함.
+        Bundle bundle = new Bundle();
         if(position == 0) // if the position is 0 we are returning the First tab
         {
-            TSchFrag tab1 = new TSchFrag();
-            return tab1;
+            bundle.putString("code", "ThisMonth");
         }
         else             // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
         {
-            NSchFrag tab2 = new NSchFrag();
-            return tab2;
+            bundle.putString("code", "NextMonth");
         }
+
+        SchFrag tab = new SchFrag();
+        tab.setArguments(bundle);
+        return tab;
     }
 
     // This method return the titles for the Tabs in the Tab Strip

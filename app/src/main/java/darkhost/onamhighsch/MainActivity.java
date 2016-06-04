@@ -1,6 +1,8 @@
 package darkhost.onamhighsch;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -156,6 +158,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return (bm || bw || bx);
     }
 
+    private boolean isMobileNetworkConnected()
+    {
+        // Made by Seven (seven@sevens.pe.kr)
+        ConnectivityManager CManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo NetworkInfo = CManager.getActiveNetworkInfo();
+        if(NetworkInfo.getType() == ConnectivityManager.TYPE_MOBILE) { return true; } else { return false; }
+    }
+
+
 
     public void DataDownload()
     {
@@ -184,11 +195,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // 데이터를 다운받은 달이 다른지, 급식 및 학사일정의 데이터가 비어있는지 확인하고 다운로드
         if(dmonth != month | mealdata.equals("") | mealnmdata.equals("") | schdata.equals("") | schnmdata.equals("") | mealbmdata.equals("")) {
             Log.d("MainActivity", "Data Downloading...");
-            if (isNetworkAvailable() == true) {
-
-                DataThread t = new DataThread(MainActivity.this);
-                t.start();
-                Toast.makeText(MainActivity.this, getString(R.string.download_start), Toast.LENGTH_SHORT).show();
+            if (isNetworkAvailable() == true)
+            {
+                if(isMobileNetworkConnected() == true) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                            builder.setTitle("모바일 네트워크 경고")
+                            .setMessage(getString(R.string.intenetwarning))
+                            .setCancelable(true)
+                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    Toast.makeText(MainActivity.this, getString(R.string.download_start), Toast.LENGTH_SHORT).show();
+                                    DataThread t = new DataThread(MainActivity.this);
+                                    t.start();
+                                }
+                            })
+                            .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    Toast.makeText(MainActivity.this, getString(R.string.intenetwarning1), Toast.LENGTH_SHORT).show();
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+                else
+                {
+                    Toast.makeText(MainActivity.this, getString(R.string.download_start), Toast.LENGTH_SHORT).show();
+                    DataThread t = new DataThread(MainActivity.this);
+                    t.start();
+                }
             } else {
                 Log.d("MainActivity", "Internet Connection Failed");
                 Toast.makeText(MainActivity.this, getString(R.string.internet_error), Toast.LENGTH_SHORT).show();

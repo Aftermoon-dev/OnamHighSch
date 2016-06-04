@@ -38,11 +38,15 @@ public class SchFragment extends Fragment {
     }
 
     public static SchFragment newInstance(int page) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM");
+        // 타이틀에 월을 표기하기 위해 캘린더에서 이번달과 다음달을 가져온 후 String에 적용
         Calendar cal = Calendar.getInstance();
-        ThisMonth = dateFormat.format(cal.getTime()).substring(1,2) + "월";
+        int ThisMonthInt = cal.get(Calendar.MONTH) + 1;
+        ThisMonth = ThisMonthInt + "월";
         cal.add(cal.MONTH, +1);
-        NextMonth = dateFormat.format(cal.getTime()).substring(1,2) + "월";
+        int NextMonthInt = cal.get(Calendar.MONTH) + 1;
+        NextMonth = NextMonthInt + "월";
+
+        // 코드상에서 원하는 페이지부터 시작할 수 있도록 함
         SchFragment fragment = new SchFragment();
         fragment.pages = page; // 0부터 시작
         return fragment;

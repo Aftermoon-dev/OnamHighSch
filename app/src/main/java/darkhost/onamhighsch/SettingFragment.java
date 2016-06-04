@@ -40,16 +40,40 @@ public class SettingFragment extends Fragment {
     }
 
     public void DataReset() {
-        if (isNetworkAvailable() == true) {
+        if (isNetworkAvailable() == true) { // 인터넷 연결 체크
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            AlertDialog.Builder builders = builder.setTitle("데이터 재설정")
+                     builder.setTitle("데이터 재설정")
                     .setMessage("데이터를 정말 재설정 하시겠습니까?\n에러가 나지 않는다면 하지 않으셔도 됩니다.")
                     .setCancelable(true)
                     .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            Toast.makeText(getActivity(), getString(R.string.data_reset), Toast.LENGTH_SHORT).show();
-                            DataThread t = new DataThread(getActivity());
-                            t.start();
+                            if(isMobileNetworkConnected() == true) { // 모바일 네트워크이면 경고를 띄움
+                                AlertDialog.Builder warningbuilder = new AlertDialog.Builder(getActivity());
+                                warningbuilder.setTitle("모바일 네트워크 경고")
+                                        .setMessage(getString(R.string.intenetwarning))
+                                        .setCancelable(true)
+                                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int whichButton) {
+                                                Toast.makeText(getActivity(), getString(R.string.data_reset), Toast.LENGTH_SHORT).show();
+                                                DataThread t = new DataThread(getActivity());
+                                                t.start();
+                                            }
+                                        })
+                                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int whichButton) {
+                                                Toast.makeText(getActivity(), getString(R.string.cancel), Toast.LENGTH_SHORT).show();
+                                                dialog.cancel();
+                                            }
+                                        });
+                                AlertDialog dialogwarning = warningbuilder.create();
+                                dialogwarning.show();
+                            }
+                            else
+                            {
+                                Toast.makeText(getActivity(), getString(R.string.data_reset), Toast.LENGTH_SHORT).show();
+                                DataThread t = new DataThread(getActivity());
+                                t.start();
+                            }
                         }
                     })
                     .setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -79,5 +103,13 @@ public class SettingFragment extends Fragment {
         if (wimaxInfo != null) bx = wimaxInfo.isConnected();
         if (wifiInfo != null) bw = wifiInfo.isConnected();
         return (bm || bw || bx);
+    }
+
+    private boolean isMobileNetworkConnected()
+    {
+        // Made by Seven (seven@sevens.pe.kr)
+        ConnectivityManager CManager = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo NetworkInfo = CManager.getActiveNetworkInfo();
+        if(NetworkInfo.getType() == ConnectivityManager.TYPE_MOBILE) { return true; } else { return false; }
     }
 }

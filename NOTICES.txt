@@ -9,7 +9,7 @@ This software includes following software components, which were obtained under 
 
 v4 Support Library for Android
 ----------
-Copyright (C) 2014 The Android Open Source Project
+	Copyright (C) 2014 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ Copyright (C) 2014 The Android Open Source Project
 
 v7 AppCompat Library for Android
 ----------
-Copyright (C) 2012 The Android Open Source Project
+	Copyright (C) 2012 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ Copyright (C) 2012 The Android Open Source Project
 
 v7 CardView Library for Android
 ----------
-Copyright (C) 2014 The Android Open Source Project
+	Copyright (C) 2014 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -63,7 +63,7 @@ Copyright (C) 2014 The Android Open Source Project
 
 Design Library for Android
 ----------
-Copyright (C) 2015 The Android Open Source Project
+	Copyright (C) 2015 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -78,10 +78,11 @@ Copyright (C) 2015 The Android Open Source Project
      limitations under the License.
 
 ====================
+
 Picasso
 https://github.com/square/picasso
 ----------
-Copyright 2013 Square, Inc.
+	Copyright 2013 Square, Inc.
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -136,7 +137,7 @@ https://github.com/futuresimple/android-floating-action-button
 School API
 https://github.com/agemor/school-api
 ----------
-	Android Meal Library was authord by 'Hyunjun Kim'
+	Android Meal Library was authored by 'Hyunjun Kim'
 	for more details, please visit the following site.
 	https://github.com/agemor/school-api
 	
@@ -154,7 +155,7 @@ School Logo : http://arch.goeia.go.kr/archmain/?menugrp=cafe&master=home&act=ind
 
 School Background : http://onam.hs.kr/board.read?mcode=1027&id=1
 
-Navigation Menu Icon (Bookmark, Build, Call, Clear, Event Note, Map, Restaurant Menu, School) " https://design.google.com/icons/index.html
+Navigation Menu Icon : https://design.google.com/icons/index.html
 
 
 

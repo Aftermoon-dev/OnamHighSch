@@ -41,6 +41,7 @@ public class MainFragment extends Fragment {
         TextView TimeTable = (TextView) view.findViewById(R.id.timetable);
         TimeTable.setText(TodayTable);
 
+        // 카드뷰를 클릭해서 각 프레그먼트로 이동할 수 있도록 함
         CardView Lunch = (CardView) view.findViewById(R.id.lunchcard);
         Lunch.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -84,15 +85,17 @@ public class MainFragment extends Fragment {
         return view;
     }
 
-
+    // 급식을 메인 프레그먼트에 표기
     public void MealSetting(View view)
     {
         String NoMeal = getResources().getString(R.string.nomeal);
         Calendar cal = Calendar.getInstance();
-        int days = cal.get(cal.DAY_OF_MONTH);
+        int days = cal.get(cal.DAY_OF_MONTH); // 오늘 날짜의 급식을 찾아오기 위해 오늘 날짜를 찾아옴
 
+        // 급식 정보가 담긴 SP를 가져옴
         SharedPreferences data = MainFragment.this.getActivity().getSharedPreferences("meal", Context.MODE_MULTI_PROCESS);
         String mealdb = data.getString("meal", "");
+
         TextView lunch = (TextView) view.findViewById(R.id.lunch);
         TextView dinner = (TextView) view.findViewById(R.id.dinner);
 
@@ -114,6 +117,7 @@ public class MainFragment extends Fragment {
         }
     }
 
+    // 일정을 메인 프레그먼트에 표기
     public void SchSetting(View view) {
         String NoSch = getResources().getString(R.string.nosch);
         Calendar cal = Calendar.getInstance();
@@ -137,12 +141,13 @@ public class MainFragment extends Fragment {
         }
     }
 
+    // 시간표 표기
     public void TimeTable() {
 
         Calendar cal = Calendar.getInstance();
         int dw = cal.get(Calendar.DAY_OF_WEEK);
 
-        if (dw == 1 || dw == 7) {
+        if (dw == 1 || dw == 7) { // 주말일때는 주말로 표시
             TodayTable = getString(R.string.Weekend);
         }
         if (dw == 2) {
