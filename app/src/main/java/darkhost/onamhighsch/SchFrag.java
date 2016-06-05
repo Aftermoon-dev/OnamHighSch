@@ -41,9 +41,8 @@ public class SchFrag extends Fragment {
 
     public void SchLoad(View view)
     {
-        String NoSch = getResources().getString(R.string.nosch);
-
         String schdb = new String();
+        Calendar cal = Calendar.getInstance();
 
         if(Code.equals("ThisMonth")) {
             SharedPreferences data = SchFrag.this.getActivity().getSharedPreferences("sch", Context.MODE_MULTI_PROCESS);
@@ -52,10 +51,10 @@ public class SchFrag extends Fragment {
         else if(Code.equals("NextMonth")) {
             SharedPreferences data = SchFrag.this.getActivity().getSharedPreferences("schnm", Context.MODE_MULTI_PROCESS);
             schdb = data.getString("schnm", "");
+            cal.add(cal.MONTH, 1);
         }
 
         if (!schdb.equals("")) {
-            Calendar cal = Calendar.getInstance();
             int lastDay = cal.getActualMaximum(Calendar.DATE);
             ScheduleData[] schs = new ScheduleData[lastDay];
 
