@@ -32,6 +32,7 @@
     <string name="thutime">목요일 시간표</string>
     <string name="fritime">금요일 시간표</string>
     <string name="notime">시간표 설정 안됨</string>
+    <string name="tablehint">시간표를 입력하세요.</string>
 
     <string name="todaylunch">오늘의 점심</string>
     <string name="todaydinner">오늘의 저녁</string>

@@ -108,46 +108,56 @@ public class TimeTableFragment extends Fragment {
     public void GetData()
     {
         SharedPreferences montable = getActivity().getSharedPreferences("montable", Context.MODE_MULTI_PROCESS);
-        MonTables = montable.getString("montable", getString(R.string.notime));
+        MonTables = montable.getString("montable", "");
 
         SharedPreferences tuetable = getActivity().getSharedPreferences("tuetable", Context.MODE_MULTI_PROCESS);
-        TueTables = tuetable.getString("tuetable", getString(R.string.notime));
+        TueTables = tuetable.getString("tuetable", "");
 
         SharedPreferences wedtable = getActivity().getSharedPreferences("wedtable", Context.MODE_MULTI_PROCESS);
-        WedTables = wedtable.getString("wedtable", getString(R.string.notime));
+        WedTables = wedtable.getString("wedtable", "");
 
         SharedPreferences thutable = getActivity().getSharedPreferences("thutable", Context.MODE_MULTI_PROCESS);
-        ThuTables = thutable.getString("thutable", getString(R.string.notime));
+        ThuTables = thutable.getString("thutable", "");
 
         SharedPreferences fritable = getActivity().getSharedPreferences("fritable", Context.MODE_MULTI_PROCESS);
-        FriTables = fritable.getString("fritable", getString(R.string.notime));
+        FriTables = fritable.getString("fritable", "");
     }
 
-    public void SaveData()
-    {
-        SharedPreferences MonTable = getActivity().getSharedPreferences("montable", Context.MODE_MULTI_PROCESS);
-        SharedPreferences.Editor MonTableEdit = MonTable.edit();
-        MonTableEdit.putString("montable", MonTables);
-        MonTableEdit.commit();
+    // 내용이 비었을경우엔 저장하지 않도록 함
+    public void SaveData() {
+        if (!MonTables.equals("")) {
+            SharedPreferences MonTable = getActivity().getSharedPreferences("montable", Context.MODE_MULTI_PROCESS);
+            SharedPreferences.Editor MonTableEdit = MonTable.edit();
+            MonTableEdit.putString("montable", MonTables);
+            MonTableEdit.commit();
+        }
 
-        SharedPreferences TueTable = getActivity().getSharedPreferences("tuetable", Context.MODE_MULTI_PROCESS);
-        SharedPreferences.Editor TueTableEdit = TueTable.edit();
-        TueTableEdit.putString("tuetable", TueTables);
-        TueTableEdit.commit();
+        if (!TueTables.equals("")) {
+            SharedPreferences TueTable = getActivity().getSharedPreferences("tuetable", Context.MODE_MULTI_PROCESS);
+            SharedPreferences.Editor TueTableEdit = TueTable.edit();
+            TueTableEdit.putString("tuetable", TueTables);
+            TueTableEdit.commit();
+        }
 
-        SharedPreferences WedTable = getActivity().getSharedPreferences("wedtable", Context.MODE_MULTI_PROCESS);
-        SharedPreferences.Editor WedTableEdit = WedTable.edit();
-        WedTableEdit.putString("wedtable", WedTables);
-        WedTableEdit.commit();
+        if (!WedTables.equals("")) {
+            SharedPreferences WedTable = getActivity().getSharedPreferences("wedtable", Context.MODE_MULTI_PROCESS);
+            SharedPreferences.Editor WedTableEdit = WedTable.edit();
+            WedTableEdit.putString("wedtable", WedTables);
+            WedTableEdit.commit();
+        }
 
-        SharedPreferences ThuTable = getActivity().getSharedPreferences("thutable", Context.MODE_MULTI_PROCESS);
-        SharedPreferences.Editor ThuTableEdit = ThuTable.edit();
-        ThuTableEdit.putString("thutable", ThuTables);
-        ThuTableEdit.commit();
+        if (!ThuTables.equals("")) {
+            SharedPreferences ThuTable = getActivity().getSharedPreferences("thutable", Context.MODE_MULTI_PROCESS);
+            SharedPreferences.Editor ThuTableEdit = ThuTable.edit();
+            ThuTableEdit.putString("thutable", ThuTables);
+            ThuTableEdit.commit();
+        }
 
-        SharedPreferences FriTable = getActivity().getSharedPreferences("fritable", Context.MODE_MULTI_PROCESS);
-        SharedPreferences.Editor FriTableEdit = FriTable.edit();
-        FriTableEdit.putString("fritable", FriTables);
-        FriTableEdit.commit();
+        if (!FriTables.equals("")) {
+            SharedPreferences FriTable = getActivity().getSharedPreferences("fritable", Context.MODE_MULTI_PROCESS);
+            SharedPreferences.Editor FriTableEdit = FriTable.edit();
+            FriTableEdit.putString("fritable", FriTables);
+            FriTableEdit.commit();
+        }
     }
 }

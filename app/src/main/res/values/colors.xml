@@ -18,4 +18,6 @@
     <color name="wed">#CC333F</color>
     <color name="thu">#EB6841</color>
     <color name="fri">#EDC951</color>
+
+    <color name="timetable_hint">#E3F2FD</color>
 </resources>
