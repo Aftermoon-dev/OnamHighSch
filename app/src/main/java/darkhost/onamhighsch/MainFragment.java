@@ -39,7 +39,7 @@ public class MainFragment extends Fragment {
         // 시간표 로드
         TimeTable();
         TextView TimeTable = (TextView) view.findViewById(R.id.timetable);
-        TimeTable.setText(TodayTable);
+        if(!TodayTable.equals("")) { TimeTable.setText(TodayTable); }
 
         // 카드뷰를 클릭해서 각 프레그먼트로 이동할 수 있도록 함
         CardView Lunch = (CardView) view.findViewById(R.id.lunchcard);

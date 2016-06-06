@@ -9,10 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,9 +24,7 @@ public class MealFrag extends Fragment {
     String Code;
 
     public MealFrag() {
-        // 여기에 getArguments를 넣으면 정상적으로 가져와지지 않아서 NullPointerExpection을 냄.
-        // 뷰를 생성하는 부분에 넣어야 작동
-        // 사실 내 실력이 모자라서인진 모르겠지만 어쨌든 그렇게 해결함
+
     }
 
     @Override
@@ -194,6 +190,7 @@ public class MealFrag extends Fragment {
                     friday.setText(NoMeal);
                 }
             }
+            // 저녁일경우
             else if(Code.equals("dinner"))
             {
                 // 월요일
