@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import java.util.Calendar;
@@ -90,7 +92,7 @@ public class MainFragment extends Fragment {
     {
         String NoMeal = getResources().getString(R.string.nomeal);
         Calendar cal = Calendar.getInstance();
-        int days = cal.get(cal.DAY_OF_MONTH); // 오늘 날짜의 급식을 찾아오기 위해 오늘 날짜를 찾아옴
+        int days = cal.get(Calendar.DAY_OF_MONTH); // 오늘 날짜의 급식을 찾아오기 위해 오늘 날짜를 찾아옴
 
         // 급식 정보가 담긴 SP를 가져옴
         SharedPreferences data = MainFragment.this.getActivity().getSharedPreferences("meal", Context.MODE_MULTI_PROCESS);
@@ -100,9 +102,9 @@ public class MainFragment extends Fragment {
         TextView dinner = (TextView) view.findViewById(R.id.dinner);
 
         if (!mealdb.equals("")) {
-            Document meal = Jsoup.parse(mealdb);
-            MenuData[] meals = MenuDataParser.parse(meal);
             try {
+                Document meal = Jsoup.parse(mealdb);
+                MenuData[] meals = MenuDataParser.parse(meal);
                 String lunchdata = meals[days - 1].lunch;
                 lunch.setText(lunchdata);
                 String dinnerdata = meals[days - 1].dinner;
@@ -110,6 +112,7 @@ public class MainFragment extends Fragment {
             } catch (Exception e) {
                 lunch.setText(NoMeal);
                 dinner.setText(NoMeal);
+                Toast.makeText(getActivity(), "급식을 가져오는데 오류가 발생했습니다. 초기화를 시도해주세요.", Toast.LENGTH_SHORT).show();
             }
         } else {
             lunch.setText(NoMeal);
@@ -127,14 +130,15 @@ public class MainFragment extends Fragment {
         String schdb = data.getString("sch", "");
         TextView today = (TextView) view.findViewById(R.id.sch);
 
-        if (schdb != "") {
-            Document sch = Jsoup.parse(schdb);
-            ScheduleData[] schs = ScheduleDataParser.parse(sch);
+        if (!schdb.equals("")) {
             try {
+                Document sch = Jsoup.parse(schdb);
+                ScheduleData[] schs = ScheduleDataParser.parse(sch);
                 String todaydata = schs[days - 1].schedule;
                 today.setText(todaydata);
             } catch (Exception e) {
                 today.setText(NoSch);
+                Toast.makeText(getActivity(), "일정을 가져오는데 오류가 발생했습니다. 초기화를 시도해주세요.", Toast.LENGTH_SHORT).show();
             }
         } else {
             today.setText(NoSch);

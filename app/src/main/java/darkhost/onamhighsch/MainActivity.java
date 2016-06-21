@@ -232,36 +232,55 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void FabSetting() {
-        fab1 = (FloatingActionButton)findViewById(R.id.fab1);
-        fab2 = (FloatingActionButton)findViewById(R.id.fab2);
-        fab3 = (FloatingActionButton)findViewById(R.id.fab3);
+        fab1 = (FloatingActionButton) findViewById(R.id.fab1);
+        fab2 = (FloatingActionButton) findViewById(R.id.fab2);
+        fab3 = (FloatingActionButton) findViewById(R.id.fab3);
 
-        try {
-            fab1.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View view) {
+
+        fab1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                try {
                     Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:031-570-3300"));
                     startActivity(intent);
+                } catch (Exception e) {
+                    Toast.makeText(MainActivity.this, getString(R.string.dial_error), Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
                 }
-            });
+            }
+        });
 
-            fab2.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View view) {
+        fab2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                try {
                     Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:031-570-3360"));
                     startActivity(intent);
+                } catch (Exception e) {
+                    Toast.makeText(MainActivity.this, getString(R.string.dial_error), Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
                 }
-            });
+            }
+        });
 
-            fab3.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
+        fab3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                try {
                     Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:031-570-3308"));
                     startActivity(intent);
+                } catch (Exception e) {
+                    Toast.makeText(MainActivity.this, getString(R.string.dial_error), Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
                 }
-            });
-        }
-        catch (Exception e) {
-                Toast.makeText(MainActivity.this, getString(R.string.dial_error), Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
-        }
+            }
+        });
+    }
+
+    static public void RefreshFrag(Context context)
+    {
+        Toast.makeText(context, "다운로드가 완료되었습니다.", Toast.LENGTH_LONG).show();
+        Fragment MainFrag = MainFragment.newInstance();
+        ((FragmentActivity)context).getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fl_activity_main, MainFrag).commit();
     }
 }
 
@@ -354,11 +373,7 @@ class DataThread extends Thread
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            Toast.makeText(Contexts, "다운로드가 완료되었습니다.", Toast.LENGTH_LONG).show();
-            Fragment MainFrag = MainFragment.newInstance();
-            ((FragmentActivity)Contexts).getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fl_activity_main, MainFrag).commit();
+            MainActivity.RefreshFrag(Contexts);
         }
     };
 }

@@ -17,7 +17,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:foreground="?selectableItemBackground"
-            card_view:cardBackgroundColor="#90CAF9" >
+            card_view:cardBackgroundColor="#E8E8E8" >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -51,7 +51,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:foreground="?selectableItemBackground"
-            card_view:cardBackgroundColor="#90CAF9" >
+            card_view:cardBackgroundColor="#9FD0D4" >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -62,7 +62,7 @@
 
                 <ImageView
                     android:layout_width="150dp"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:id="@+id/logoimage"
                     android:layout_marginBottom="10dp" />
@@ -92,7 +92,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:foreground="?selectableItemBackground"
-            card_view:cardBackgroundColor="#90CAF9">
+            card_view:cardBackgroundColor="#87BDD6">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -102,8 +102,8 @@
                 android:weightSum="1">
 
                 <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="100dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:id="@+id/treeimage"
                     android:layout_marginBottom="10dp" />
@@ -133,7 +133,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:foreground="?selectableItemBackground"
-            card_view:cardBackgroundColor="#90CAF9" >
+            card_view:cardBackgroundColor="#B7D7E8" >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -143,8 +143,8 @@
                 android:weightSum="1">
 
                 <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="100dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:id="@+id/flowerimage"
                     android:layout_marginBottom="10dp" />
@@ -174,7 +174,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:foreground="?selectableItemBackground"
-            card_view:cardBackgroundColor="#90CAF9">
+            card_view:cardBackgroundColor="#CFE1E8">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -208,7 +208,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:foreground="?selectableItemBackground"
-            card_view:cardBackgroundColor="#90CAF9" >
+            card_view:cardBackgroundColor="#DAEBEA" >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -218,8 +218,8 @@
                 android:weightSum="1">
 
                 <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="100dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:id="@+id/animalimage"
                     android:layout_marginBottom="10dp" />
