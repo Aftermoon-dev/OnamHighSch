@@ -315,12 +315,12 @@ class DataThread extends Thread
 
         try {
 
-            Document sch = Jsoup.connect("http://hes.goe.go.kr/sts_sci_sf01_001.do?schulCode=J100005670&schulCrseScCode=4&schulKndScCode=04").get();
-            Document schnm = Jsoup.connect("http://hes.goe.go.kr/sts_sci_sf01_001.do?schulCode=J100005670&schulCrseScCode=4&schulKndScCode=04&ay=" + nextyear + "&mm=" + Snextmonth).get();
+            Document sch = Jsoup.connect("http://stu.goe.go.kr/sts_sci_sf01_001.do?schulCode=J100005670&schulCrseScCode=4&schulKndScCode=04").get();
+            Document schnm = Jsoup.connect("http://stu.goe.go.kr/sts_sci_sf01_001.do?schulCode=J100005670&schulCrseScCode=4&schulKndScCode=04&ay=" + nextyear + "&mm=" + Snextmonth).get();
 
-            Document meal = Jsoup.connect("http://hes.goe.go.kr/sts_sci_md00_001.do?schulCode=J100005670&schulCrseScCode=4&schulKndScCode=04").get();
-            Document mealnm = Jsoup.connect("http://hes.goe.go.kr/sts_sci_md00_001.do?schulCode=J100005670&schulCrseScCode=4&schulKndScCode=04&ay=" + nextyear + "&mm=" + Snextmonth).get();
-            Document mealbm = Jsoup.connect("http://hes.goe.go.kr/sts_sci_md00_001.do?schulCode=J100005670&schulCrseScCode=4&schulKndScCode=04&ay=" + beforeyear + "&mm=" + SBeforemonth).get();
+            Document meal = Jsoup.connect("http://stu.goe.go.kr/sts_sci_md00_001.do?schulCode=J100005670&schulCrseScCode=4&schulKndScCode=04").get();
+            Document mealnm = Jsoup.connect("http://stu.goe.go.kr/sts_sci_md00_001.do?schulCode=J100005670&schulCrseScCode=4&schulKndScCode=04&ay=" + nextyear + "&mm=" + Snextmonth).get();
+            Document mealbm = Jsoup.connect("http://stu.goe.go.kr/sts_sci_md00_001.do?schulCode=J100005670&schulCrseScCode=4&schulKndScCode=04&ay=" + beforeyear + "&mm=" + SBeforemonth).get();
 
             Log.d("DataThread", "BEFORE YEAR : " + beforeyear + "BEFORE MONTH : " + SBeforemonth);
             Log.d("DataThread", "THIS YEAR : " + nowyear + "THIS MONTH : " + nowmonth);
@@ -367,6 +367,7 @@ class DataThread extends Thread
 
         } catch (Exception e) {
             Log.d("DataThread", "Thread Exception Error!");
+            errorhandle.sendEmptyMessage(0);
             e.printStackTrace();
         }
     }
@@ -374,6 +375,12 @@ class DataThread extends Thread
         @Override
         public void handleMessage(Message msg) {
             MainActivity.RefreshFrag(Contexts);
+        }
+    };
+    Handler errorhandle = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            Toast.makeText(Contexts, Contexts.getResources().getString(R.string.download_connect_error), Toast.LENGTH_SHORT).show();
         }
     };
 }
