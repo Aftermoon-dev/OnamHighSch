@@ -34,7 +34,8 @@
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="16dp"
         fab:fab_labelStyle="@style/menu_labels_style"
-        fab:fab_labelsPosition="left">
+        fab:fab_labelsPosition="left"
+        android:id="@+id/fabmenu" >
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab1"

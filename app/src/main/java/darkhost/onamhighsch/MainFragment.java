@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import java.util.Calendar;
@@ -48,6 +50,9 @@ public class MainFragment extends Fragment {
         Lunch.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Fragment MealFrag = MealFragment.newInstance(0);
+                if(MainActivity.FabMenu.isExpanded()) {
+                    MainActivity.FabMenu.collapse();
+                }
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fl_activity_main, MealFrag).commit();
@@ -58,6 +63,9 @@ public class MainFragment extends Fragment {
         Dinner.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Fragment MealFrag = MealFragment.newInstance(1);
+                if(MainActivity.FabMenu.isExpanded()) {
+                    MainActivity.FabMenu.collapse();
+                }
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fl_activity_main, MealFrag).commit();
@@ -68,6 +76,9 @@ public class MainFragment extends Fragment {
         Sch.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Fragment SchFrag = SchFragment.newInstance(0);
+                if(MainActivity.FabMenu.isExpanded()) {
+                    MainActivity.FabMenu.collapse();
+                }
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fl_activity_main, SchFrag).commit();
@@ -78,6 +89,9 @@ public class MainFragment extends Fragment {
         TimeTables.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Fragment TimeTableFrag = TimeTableFragment.newInstance();
+                if(MainActivity.FabMenu.isExpanded()) {
+                    MainActivity.FabMenu.collapse();
+                }
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fl_activity_main, TimeTableFrag).commit();

@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -32,6 +34,7 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     long backPressedTime;
     private FloatingActionButton fab1, fab2, fab3;
+    public static FloatingActionsMenu FabMenu;
 
     // Fragment
     MainFragment MainFrag;
@@ -75,6 +78,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // Fab Button
         FabSetting();
+
+        // Get Fab Menu
+        FabMenu = (FloatingActionsMenu) findViewById(R.id.fabmenu);
     }
 
     @Override
@@ -82,6 +88,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if(FabMenu.isExpanded()) {
+            FabMenu.collapse();
         } else {
             Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fl_activity_main);
             if (fragment != MainFrag)
@@ -137,6 +145,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent it = new Intent(Intent.ACTION_VIEW,uri);
             startActivity(it);
         }
+
+        if(FabMenu.isExpanded()) { FabMenu.collapse(); }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
