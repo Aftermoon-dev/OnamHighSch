@@ -143,6 +143,7 @@ https://github.com/agemor/school-api
 	
 ====================
 
+res/layout/schlist.xml (Original Name : list_canlendar_row.xml)
 https://github.com/sukso96100/zionhs
 ----------
 	Zion High School Application for Android
@@ -173,7 +174,7 @@ School Logo : http://arch.goeia.go.kr/archmain/?menugrp=cafe&master=home&act=ind
 School Background : http://onam.hs.kr/board.read?mcode=1027&id=1
 
 Navigation Menu Icon : https://design.google.com/icons/index.html
-=====================
 
+=====================
 
 
