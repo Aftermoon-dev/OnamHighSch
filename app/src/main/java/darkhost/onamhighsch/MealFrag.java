@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import java.text.SimpleDateFormat;
@@ -316,6 +318,14 @@ public class MealFrag extends Fragment {
                     friday.setText(NoMeal);
                 }
             }
+        }
+        else
+        {
+            Fragment MainFrag = MainFragment.newInstance();
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fl_activity_main, MainFrag).commit();
+            Toast.makeText(getActivity(), "급식 데이터를 불러올 수 없습니다. 다운로드를 진행해주세요.", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -73,7 +73,6 @@ public class SchFrag extends Fragment {
                     if (schs[i] != null) {
                         item[i] = new SchItem(i+1, schs[i].schedule);
                     }
-
                     items.add(item[i]);
                 }
 
@@ -89,6 +88,14 @@ public class SchFrag extends Fragment {
                 Toast.makeText(getActivity(), "일정을 가져오는데 오류가 발생했습니다.", Toast.LENGTH_LONG).show();
                 e.printStackTrace();
             }
+        }
+        else
+        {
+            Fragment MainFrag = MainFragment.newInstance();
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fl_activity_main, MainFrag).commit();
+            Toast.makeText(getActivity(), "일정 데이터를 불러올 수 없습니다. 다운로드를 진행해주세요.", Toast.LENGTH_SHORT).show();
         }
     }
 }
