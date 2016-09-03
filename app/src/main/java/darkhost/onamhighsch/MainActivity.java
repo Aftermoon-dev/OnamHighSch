@@ -23,6 +23,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -43,6 +44,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TimeTableFragment TimeTableFrag;
     SettingFragment SettingFrag;
     SchoolinfoFragment SchoolinfoFrag;
+
+    // Menu
+    static Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,8 +180,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(NetworkInfo.getType() == ConnectivityManager.TYPE_MOBILE) { return true; } else { return false; }
     }
 
-
-
     public void DataDownload()
     {
         // 급식 및 학사 일정 Download 등 처리
@@ -284,6 +286,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
+    // Fragment Refresh
     static public void RefreshFrag(Context context)
     {
         Toast.makeText(context, "다운로드가 완료되었습니다.", Toast.LENGTH_LONG).show();
@@ -291,6 +294,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ((FragmentActivity)context).getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fl_activity_main, MainFrag).commit();
+    }
+
+    // Download Error Message
+    static public void ConnectErrorMessage(Context context)
+    {
+        Toast.makeText(context, context.getResources().getString(R.string.download_connect_error), Toast.LENGTH_SHORT).show();
+    }
+
+    // 메뉴 선택시
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.al:
+                AlertDialog.Builder almenu = new AlertDialog.Builder(MainActivity.this);
+                almenu.setTitle("알레르기 정보")
+                        .setMessage(getString(R.string.Al))
+                        .setCancelable(true)
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog dialog = almenu.create();
+                dialog.show();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    // 메뉴 생성
+    public boolean onCreateOptionsMenu(Menu menu) {
+        this.menu = menu;
+        getMenuInflater().inflate(R.menu.meal_menu, menu);
+        // 급식 메뉴 이외에선 보이지 않도록 가림
+        menu.setGroupVisible(R.id.algroup, false);
+        return super.onCreateOptionsMenu(menu);
     }
 }
 
@@ -390,7 +428,7 @@ class DataThread extends Thread
     Handler errorhandle = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            Toast.makeText(Contexts, Contexts.getResources().getString(R.string.download_connect_error), Toast.LENGTH_SHORT).show();
+            MainActivity.ConnectErrorMessage(Contexts);
         }
     };
 }

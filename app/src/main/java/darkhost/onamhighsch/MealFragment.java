@@ -1,23 +1,12 @@
 package darkhost.onamhighsch;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 
 /**
  * Created by 민재 on 2016-03-07.
@@ -69,6 +58,23 @@ public class MealFragment extends Fragment {
 
         // 지정된 페이지로 설정
         pager.setCurrentItem(pages);
+
+        // 알레르기 메뉴 보이기
+        MenuShow(true);
+
         return view;
+    }
+
+    public void onDestroyView() {
+        // 알레르기 메뉴 숨기기
+        MenuShow(false);
+        super.onDestroyView();
+    }
+
+    // 알레르기 메뉴 활성화 / 비활성화 함수
+    public void MenuShow(boolean ShowMenu) {
+        if(MainActivity.menu == null)
+            return;
+        MainActivity.menu.setGroupVisible(R.id.algroup, ShowMenu);
     }
 }
