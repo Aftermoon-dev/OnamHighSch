@@ -3,8 +3,10 @@ package darkhost.onamhighsch;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -30,10 +32,22 @@ public class SettingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
 
+        // 데이터 초기화 카드뷰
         CardView button = (CardView) view.findViewById(R.id.resetbutton);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 DataReset();
+            }
+        });
+
+        // 오픈소스 라이센스 카드뷰
+        CardView opensource = (CardView) view.findViewById(R.id.opensource);
+        opensource.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uri = Uri.parse("https://raw.githubusercontent.com/Darkhost/OnamHighSch/master/NOTICES.txt");
+                Intent open = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(open);
             }
         });
         return view;
