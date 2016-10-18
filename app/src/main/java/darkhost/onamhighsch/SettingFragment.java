@@ -64,7 +64,7 @@ public class SettingFragment extends Fragment {
                             if(isMobileNetworkConnected() == true) { // 모바일 네트워크이면 경고를 띄움
                                 AlertDialog.Builder warningbuilder = new AlertDialog.Builder(getActivity());
                                 warningbuilder.setTitle("모바일 네트워크 경고")
-                                        .setMessage(getString(R.string.intenetwarning))
+                                        .setMessage(getString(R.string.internetwarning))
                                         .setCancelable(true)
                                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int whichButton) {

@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TimeTableFragment TimeTableFrag;
     SettingFragment SettingFrag;
     SchoolinfoFragment SchoolinfoFrag;
+    BoardFragment BoardFrag;
 
     // Menu
     static Menu menu;
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TimeTableFrag = TimeTableFragment.newInstance();
         SettingFrag = SettingFragment.newInstance();
         SchoolinfoFrag = SchoolinfoFragment.newInstance();
+        BoardFrag = BoardFrag.newInstance(0);
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -146,8 +148,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .replace(R.id.fl_activity_main, SchoolinfoFrag).commit();
         } else if (id == R.id.nav_map) {
             Uri uri = Uri.parse("geo:37.6979318,127.2063148");
-            Intent it = new Intent(Intent.ACTION_VIEW,uri);
+            Intent it = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(it);
+        } else if (id == R.id.notice) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fl_activity_main, BoardFrag).commit();
         }
 
         if(FabMenu.isExpanded()) { FabMenu.collapse(); }
@@ -212,7 +218,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if(isMobileNetworkConnected() == true) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                             builder.setTitle("모바일 네트워크 경고")
-                            .setMessage(getString(R.string.intenetwarning))
+                            .setMessage(getString(R.string.internetwarning))
                             .setCancelable(true)
                             .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
@@ -223,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             })
                             .setNegativeButton("취소", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
-                                    Toast.makeText(MainActivity.this, getString(R.string.intenetwarning1), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity.this, getString(R.string.internetwarning1), Toast.LENGTH_SHORT).show();
                                     dialog.cancel();
                                 }
                             });

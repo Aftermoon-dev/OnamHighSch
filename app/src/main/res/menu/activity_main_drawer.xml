@@ -27,6 +27,10 @@
     <item android:title="학교">
         <menu>
             <item
+                android:id="@+id/notice"
+                android:icon="@drawable/ic_library_books_black_24dp"
+                android:title="공지사항" />
+            <item
                 android:id="@+id/nav_schoolinfo"
                 android:icon="@drawable/ic_school_black_24dp"
                 android:title="학교 소개" />

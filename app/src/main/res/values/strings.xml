@@ -6,7 +6,7 @@
     <string name="info">Made By 10724 선민재\n문의 : ddol0225@naver.com</string>
 
     <string name="AlMenu">알레르기 정보</string>
-    <string name="Al">①난류 ②우유 ③메밀 ④땅콩 ⑤대두 ⑥밀 ⑦고등어 ⑧게 ⑨새우 ⑩돼지고기 ⑪복숭아 ⑫토마토 ⑬아황산염</string>
+    <string name="Al">①난류 ②우유 ③메밀 ④땅콩 ⑤대두 ⑥밀 ⑦고등어 ⑧게 ⑨새우 ⑩돼지고기 ⑪복숭아 ⑫토마토 ⑬아황산염\n\n급식 메뉴는 언제든지 변동될 수 있습니다.</string>
 
     <string name="timetable">시간표</string>
     <string name="wait">로딩중..</string>
@@ -23,8 +23,8 @@
     <string name="data_reset">데이터 재설정중입니다. 인터넷을 끊지 마시기 바랍니다.</string>
     <string name="savecomplete">저장했습니다.</string>
     <string name="comingsoon">준비중입니다.</string>
-    <string name="intenetwarning">모바일 네트워크 환경에서 다운로드시 데이터 요금이 부과될 수 있습니다.\n계속하시겠습니까?</string>
-    <string name="intenetwarning1">새 데이터를 다운로드하지 않으시면 정상적으로 이용하실 수 없습니다.</string>
+    <string name="internetwarning">모바일 네트워크 환경에서 다운로드시 데이터 요금이 부과될 수 있습니다.\n계속하시겠습니까?</string>
+    <string name="internetwarning1">새 데이터를 다운로드하지 않으시면 정상적으로 이용하실 수 없습니다.</string>
     <string name="cancel">취소되었습니다.</string>
 
     <string name="montime">월요일 시간표</string>

@@ -52,3 +52,20 @@ public class SchAdapter extends RecyclerView.Adapter<SchAdapter.ViewHolder> {
         }
     }
 }
+
+class SchItem {
+    int date;
+    String sch;
+
+    int getDate(){
+        return this.date;
+    }
+    String getSch(){
+        return this.sch;
+    }
+
+    SchItem(int date, String sch){
+        this.date=date;
+        this.sch=sch;
+    }
+}
